@@ -1,0 +1,7 @@
+.idea/
+
+.docker_memo_laravel/mysql/data/
+.docker_memo_laravel/mysql/log/
+.docker_memo_laravel/php/log
+
+*.log
