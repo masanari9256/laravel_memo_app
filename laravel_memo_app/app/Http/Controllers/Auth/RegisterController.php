@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserCreateRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,7 +44,13 @@ class RegisterController extends Controller
     $this->middleware('guest');
   }
 
-  public function register(Request $request)
+  /**
+   * ユーザー登録後、投稿画面にリダイレクトする
+   *
+   * @param UserCreateRequest $request
+   * @return RedirectResponse
+   */
+  public function register(UserCreateRequest $request)
   {
     User::create([
       'name' => $request->name,
