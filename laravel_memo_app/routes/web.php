@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login.index');
-Route::get('/user', 'App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('user.register');
-Route::post('/user/register', 'App\Http\Controllers\Auth\RegisterController@register')->name('user.exec.register');
+Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login.index');
+Route::get('/user', [\App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('user.register');
+Route::post('/user/register', [\App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('user.exec.register');
 
 Route::group(['middleware' => ['auth']], function(){
   Route::get('/memo', [\App\Http\Controllers\MemoController::class, 'index'])->name('memo.index');
+  Route::get('/memo/add', [\App\Http\Controllers\MemoController::class, 'add'])->name('memo.add');
 });
 
 Auth::routes();
