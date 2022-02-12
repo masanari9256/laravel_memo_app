@@ -21,6 +21,10 @@ class MemoController extends Controller
     ]);
   }
 
+  /**
+   * メモの追加
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function add() {
     Memo::create([
       'user_id' => \Auth::id(),
