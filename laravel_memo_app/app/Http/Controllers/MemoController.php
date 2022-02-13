@@ -49,6 +49,25 @@ class MemoController extends Controller
   }
 
   /**
+   * メモの編集
+   * @param Request $request
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function update(Request $request) {
+    $memo = Memo::find($request->edit_id);
+    $memo->title = $request->edit_title;
+    $memo->content = $request->edit_content;
+
+    if($memo->update()) {
+      session()->put('select_memo', $memo);
+    } else {
+      session()->remove('select_memo');
+    }
+
+    return redirect()->route('memo.index');
+  }
+
+  /**
    * ログインユーザー名の取得
    * @return string
    */
