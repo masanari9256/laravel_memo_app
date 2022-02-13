@@ -20,6 +20,7 @@ Route::post('/user/register', [\App\Http\Controllers\Auth\RegisterController::cl
 Route::group(['middleware' => ['auth']], function(){
   Route::get('/memo', [\App\Http\Controllers\MemoController::class, 'index'])->name('memo.index');
   Route::get('/memo/add', [\App\Http\Controllers\MemoController::class, 'add'])->name('memo.add');
+  Route::get('/memo/select', [\App\Http\Controllers\MemoController::class, 'select'])->name('memo.select');
 });
 
 Auth::routes();
