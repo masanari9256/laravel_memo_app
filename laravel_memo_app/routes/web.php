@@ -22,6 +22,8 @@ Route::group(['middleware' => ['auth']], function(){
   Route::get('/memo/add', [\App\Http\Controllers\MemoController::class, 'add'])->name('memo.add');
   Route::get('/memo/select', [\App\Http\Controllers\MemoController::class, 'select'])->name('memo.select');
   Route::post('/memo/update', [\App\Http\Controllers\MemoController::class, 'update'])->name('memo.update');
+  Route::post('/memo/delete', [\App\Http\Controllers\MemoController::class, 'delete'])->name('memo.delete');
+  Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('memo.logout');
 });
 
 Auth::routes();
