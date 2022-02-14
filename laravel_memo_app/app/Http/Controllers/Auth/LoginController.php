@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Memo;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -43,6 +44,13 @@ class LoginController extends Controller
         'password.regex' => ':attributeは半角英数字で入力してください。'
       ]
     );
+  }
+
+  public function authenticated(Request $request, $user) {
+    $memo = Memo::where('user_id', \Auth::id())->orderBy('updated_at', 'DESC')->first();
+    if ($memo) {
+      session()->put('select_memo', $memo);
+    }
   }
 
   /**
